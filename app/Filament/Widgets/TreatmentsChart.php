@@ -9,7 +9,7 @@ use Flowframe\Trend\TrendValue;
 
 class TreatmentsChart extends ChartWidget
 {
-    protected static ?string $heading = 'Treatments';
+    protected static ?string $heading = 'Veterinaria';
 
     protected function getData(): array
     {
@@ -24,7 +24,7 @@ class TreatmentsChart extends ChartWidget
         return [
             'datasets' => [
                 [
-                    'label' => 'Treatments',
+                    'label' => 'Tratamientos',
                     'data' => $data->map(fn (TrendValue $value) => $value->aggregate),
                 ],
             ],

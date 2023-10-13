@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PostController;
+use Illuminate\Support\Facades\Log;
 
 /*
 |--------------------------------------------------------------------------
@@ -15,5 +16,11 @@ use App\Http\Controllers\PostController;
 */
 
 Route::get('/', function () {
+
+    Log::info('Ingresando al welcome');
+    return view('welcome');
+});
+
+Route::get('/tr', function () {
     return view('welcome');
 });

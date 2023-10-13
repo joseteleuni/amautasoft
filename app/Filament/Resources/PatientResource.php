@@ -24,6 +24,7 @@ use Filament\Tables\Filters\SelectFilter;
 class PatientResource extends Resource
 {
     
+    protected static ?string $navigationLabel = 'PBX-IP';
 
     protected static ?string $model = Patient::class;
 
@@ -90,6 +91,7 @@ class PatientResource extends Resource
             ])
             ->actions([
                 Tables\Actions\EditAction::make(),
+               
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([
@@ -110,7 +112,7 @@ class PatientResource extends Resource
     {
         return [
             'index' => Pages\ListPatients::route('/'),
-            'create' => Pages\CreatePatient::route('/create'),
+            //  'create' => Pages\CreatePatient::route('/create'),
             'edit' => Pages\EditPatient::route('/{record}/edit'),
         ];
     }    
