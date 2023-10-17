@@ -27,7 +27,10 @@ use Filament\Infolists\Components\TextEntry;
 use Filament\Forms\Components\Hidden;
 use Filament\Forms\Components\Checkbox;
 use Filament\Infolists\Components\Section as SectionFill;
-
+use App\Models\Departamento;
+use App\Models\Provincia;
+use App\Enums\Status;
+use Filament\Tables\Columns\SelectColumn;
 
 class MikrotikResource extends Resource
 {
@@ -61,8 +64,14 @@ class MikrotikResource extends Resource
                     Checkbox::make('starlink'),
                     Checkbox::make('fibra'),
                 ])->columns(2),
-                
-               
+                Select::make('departamento_id')
+                    ->label('Departamento')
+                    ->options(Departamento::all()->pluck('nombre','id')),               
+                Select::make('provincia_id')
+                    ->label('Provincia')
+                    ->options(Provincia::all()->pluck('nombre','id')),
+                Select::make('status')
+                    ->options(Status::class),
                 //Hidden::make('puerto')
             ]);
     }
@@ -75,6 +84,7 @@ class MikrotikResource extends Resource
                 TextColumn::make('nombre')->searchable(),
                 //TextColumn::make('did')->searchable(),
                 TextColumn::make('dominio'),
+                
                 //TextColumn::make('ip')->label('Direccion IP'),
 
             ])
@@ -109,6 +119,9 @@ class MikrotikResource extends Resource
                     TextEntry::make('dominio'),
                     TextEntry::make('puerto_winbox'),
                     TextEntry::make('puerto_pbx'),
+                    TextEntry::make('departamento_id'),
+                    TextEntry::make('provincia_id'),
+                    TextEntry::make('status'),
                 ])->columns(2),
                 SectionFill::make('Implementacion')
                 ->schema([
